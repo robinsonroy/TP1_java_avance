@@ -3,8 +3,8 @@
  */
 
 import java.io.InputStream;
-        import java.lang.Process;
-        import java.io.IOException;
+import java.lang.Process;
+import java.io.IOException;
 
 /**
  * Created by Robinson on 05/01/15.
@@ -16,7 +16,7 @@ public class mainController {
         Runtime r = Runtime.getRuntime();
         Process p = null;
         try {
-            p = r.exec("traceroute fr.wikipedia.org");
+            p = r.exec("java -jar /Users/Robinson/Downloads/fakeroute.jar ece.fr");
         } catch (IOException e) {
             e.printStackTrace();
         }
