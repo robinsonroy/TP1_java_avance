@@ -6,9 +6,7 @@ package Controller;
 
 import Model.Fakeroute;
 
-/**
- * Created by Robinson on 05/01/15.
- */
+
 public class mainController {
 
     public static void main(String[] args) {
