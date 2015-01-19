@@ -10,14 +10,16 @@ public class OutputProcessing {
 
     private Scanner sc;
 
-    OutputProcessing(String lines)
+    public OutputProcessing(String lines)
     {
+
         this.sc = new Scanner (lines);
     }
 
     public String getIPAdress (String line)
     {
 
+        // creer le table de l'objet line
         System.out.println();
 
         return "OK";

@@ -5,6 +5,7 @@ package Controller;
 
 
 import Model.Fakeroute;
+import Model.OutputProcessing;
 
 
 public class mainController {
@@ -13,7 +14,9 @@ public class mainController {
 
     Fakeroute fakeroute = new Fakeroute ();
 
-        fakeroute.fakerouteExec();
+        String output  = fakeroute.fakerouteExec();
+
+        OutputProcessing outputProcessing = new OutputProcessing(output);
     }
 
 }
