@@ -6,10 +6,6 @@ package Controller;
 
 import Model.Fakeroute;
 
-import java.io.InputStream;
-import java.lang.Process;
-import java.io.IOException;
-
 /**
  * Created by Robinson on 05/01/15.
  */
@@ -20,12 +16,6 @@ public class mainController {
     Fakeroute fakeroute = new Fakeroute ();
 
         fakeroute.fakerouteExec();
-
-
-
     }
-
-
-
 
 }

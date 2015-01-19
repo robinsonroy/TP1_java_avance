@@ -18,8 +18,9 @@ public class OutputProcessing {
     public String getIPAdress (String line)
     {
 
+        System.out.println();
 
-
+        return "OK";
     }
 
 }
