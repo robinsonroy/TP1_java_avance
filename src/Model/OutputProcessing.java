@@ -1,7 +1,7 @@
 package Model;
 
 import java.util.Scanner;
-
+import java.util.ArrayList;
 
 /**
  * Created by Sekou on 13/01/15.
@@ -9,20 +9,35 @@ import java.util.Scanner;
 public class OutputProcessing {
 
     private Scanner sc;
+    ArrayList<LineRoute> ipList;
 
     public OutputProcessing(String lines)
     {
 
         this.sc = new Scanner (lines);
+        this.ipList = new ArrayList<LineRoute>();
     }
 
-    public String getIPAdress (String line)
+
+    private void extractIP (Scanner sc)
     {
+        while (sc.hasNextLine())
+        {
+            String line = sc.nextLine();
+            LineRoute outputLine = new LineRoute();
+            outputLine.parseLine(line);
+            this.ipList.add(outputLine);
+        }
 
-        // creer le table de l'objet line
-        System.out.println();
-
-        return "OK";
     }
+
+
+    public ArrayList<LineRoute> getList()
+    {
+        extractIP(sc);
+        return this.ipList;
+
+    }
+
 
 }
