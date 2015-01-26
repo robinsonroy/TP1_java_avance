@@ -19,7 +19,7 @@ public class mainController {
 
         String output  = fakeroute.fakerouteExec();
         LineRoute lineroute = new LineRoute ();
-        lineroute.parseLine("Green Lights 123.456.7.43 12 ms");
+        lineroute.parseLine("Green Lights 123.456.7.43 12.3.456.2 123.2.4.2 1.2.3.4");
 
 
     }
