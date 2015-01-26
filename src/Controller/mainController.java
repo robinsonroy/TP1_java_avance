@@ -10,6 +10,8 @@ import Model.OutputProcessing;
 import Model.LineRoute;
 import View.GraphPaint;
 
+import java.util.ArrayList;
+
 
 public class mainController {
 
@@ -18,8 +20,14 @@ public class mainController {
     Fakeroute fakeroute = new Fakeroute ();
 
         String output  = fakeroute.fakerouteExec();
-        LineRoute lineroute = new LineRoute ();
-        lineroute.parseLine("Green Lights 123.456.7.43 12.3.456.2 123.2.4.2 1.2.3.4");
+        OutputProcessing output2 = new OutputProcessing(output);
+        ArrayList<LineRoute> ipList = output2.getList();
+
+        for (int i = 0; i<ipList.size()-1; i++)
+        {
+            ipList.get(i).printIP1();
+
+        }
 
         GraphPaint g = new GraphPaint();
         g.testGraph();

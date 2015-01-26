@@ -33,30 +33,37 @@ public class LineRoute {
         int [] saved = new int[3]; saved[0]=0; saved[1]=0; saved[2]=0;
         while (matcher.find())
         {
-            System.out.println("OK");
+
 
             if (saved[0]==0)
             {
                 IP1 = new IPInformation();
                 IP1.setIP(matcher.group());
                 saved[0]=1;
-                System.out.println(IP1.getIP());
+
             }
             else if (saved [1]== 0) {
                 IP2 = new IPInformation();
                 IP2.setIP(matcher.group());
                 saved[1] = 1;
-                System.out.println(IP2.getIP());
+
             }
             else
             {
                 IP3 = new IPInformation();
                 IP3.setIP(matcher.group());
                 saved[2]=1;
-                System.out.println(IP3.getIP());
+
             }
         }
 
     }
+
+    public void printIP1()
+    {
+        System.out.println(IP1.getIP());
+    };
+
+
 
 }
