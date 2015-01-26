@@ -13,6 +13,18 @@ public class LineRoute {
         IP3 = null;
     }
 
+    public IPInformation getIP1() {
+        return IP1;
+    }
+
+    public IPInformation getIP2() {
+        return IP2;
+    }
+
+    public IPInformation getIP3() {
+        return IP3;
+    }
+
     public void parseLine(String line){
 
         // parse and put information in lineRoute object

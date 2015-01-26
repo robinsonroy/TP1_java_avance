@@ -9,13 +9,35 @@ public class IPInformation {
 
     public IPInformation(){
         IP = new String();
-        t1 = 0;
-        t2 = 0;
-        t3 = 0;
+        t1 = -1;
+        t2 = -1;
+        t3 = -1;
     }
     public IPInformation(String IP , int t1){
         this.IP = IP;
         this.t1 = t1;
+        this.t2 = -1;
+        this.t3 = -1;
+    }
+
+
+
+    public IPInformation(String IP , int t1, int t2){
+        this.IP = IP;
+        this.t1 = t1;
+        this.t2 = t2;
+        this.t3 = -1;
+    }
+
+    public IPInformation(String IP , int t1, int t2, int t3){
+        this.IP = IP;
+        this.t1 = t1;
+        this.t2 = t2;
+        this.t3 = t3;
+    }
+
+    public void setIP(String IP) {
+        this.IP = IP;
     }
 
     public void setT1(int t1) {
@@ -28,24 +50,6 @@ public class IPInformation {
 
     public void setT3(int t3) {
         this.t3 = t3;
-    }
-
-    public IPInformation(String IP , int t1, int t2){
-        this.IP = IP;
-
-        this.t1 = t1;
-        this.t2 = t2;
-    }
-
-    public IPInformation(String IP , int t1, int t2, int t3){
-        this.IP = IP;
-        this.t1 = t1;
-        this.t2 = t2;
-        this.t3 = t3;
-    }
-
-    public void setIP(String IP) {
-        this.IP = IP;
     }
 
     public String getIP() {
