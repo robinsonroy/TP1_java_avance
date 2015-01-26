@@ -23,14 +23,10 @@ public class mainController {
         OutputProcessing output2 = new OutputProcessing(output);
         ArrayList<LineRoute> ipList = output2.getList();
 
-        for (int i = 0; i<ipList.size()-1; i++)
-        {
-            ipList.get(i).printIP1();
-
-        }
-
         GraphPaint g = new GraphPaint();
-        g.testGraph();
+        g.readList(ipList);
+        g.addEdge(ipList);
+        g.diplay();
     }
 
 }

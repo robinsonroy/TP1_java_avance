@@ -12,7 +12,11 @@ import java.util.Iterator;
  */
 public class GraphPaint {
 
-    public GraphPaint(){};
+    private Graph graph;
+
+    public GraphPaint(){
+        graph = new SingleGraph("GraphRoute");
+    };
 
     public void testGraph() {
         org.graphstream.graph.Graph graph = new SingleGraph("Tutorial 1");
@@ -21,7 +25,7 @@ public class GraphPaint {
 
 
 
-        org.graphstream.graph.Node n = graph.addNode("B");
+        Node n = graph.addNode("B");
         n.addAttribute("ui.label","B");
         graph.addNode("C" );
         graph.addEdge("AB", "A", "B");
@@ -34,8 +38,10 @@ public class GraphPaint {
         graph.display();
     }
 
-    public Graph readList(ArrayList<LineRoute> l, Graph graph) {
+    public void readList(ArrayList<LineRoute> l) {
 
+        Node n = graph.addNode("root");
+        n.addAttribute("ui.label", "root");
 
         Iterator iter = l.iterator();
 
@@ -45,29 +51,91 @@ public class GraphPaint {
 
             if(lineroute.getIP1() != null){
                 IPInformation ipInformation = lineroute.getIP1();
-                org.graphstream.graph.Node n1 = graph.addNode(ipInformation.getIP());
-                n1.addAttribute("ui.label", ipInformation.getIP());
+                try {
+                    Node n1 = graph.addNode(ipInformation.getIP());
+                    n1.addAttribute("ui.label", ipInformation.getIP());
+                }catch (org.graphstream.graph.IdAlreadyInUseException e){
+                    //e.printStackTrace();
+                }
             }
 
             if(lineroute.getIP2() != null){
                 IPInformation ipInformation = lineroute.getIP2();
-                graph.addNode(ipInformation.getIP());
-                org.graphstream.graph.Node n2 = graph.addNode(ipInformation.getIP());
-                n2.addAttribute("ui.label", ipInformation.getIP());
+                try {
+                    Node n2 = graph.addNode(ipInformation.getIP());
+                    n2.addAttribute("ui.label", ipInformation.getIP());
+                }catch (org.graphstream.graph.IdAlreadyInUseException e){
+                    //e.printStackTrace();
+                }
             }
 
-            if(lineroute.getIP1() != null){
+            if(lineroute.getIP3() != null){
                 IPInformation ipInformation = lineroute.getIP3();
-                graph.addNode(ipInformation.getIP());
-                org.graphstream.graph.Node n3 = graph.addNode(ipInformation.getIP());
-                n3.addAttribute("ui.label", ipInformation.getIP());
+                try {
+                    Node n3 = graph.addNode(ipInformation.getIP());
+                    n3.addAttribute("ui.label", ipInformation.getIP());
+                }catch (org.graphstream.graph.IdAlreadyInUseException e){
+                    //e.printStackTrace();
+                }
             }
-
-
         }
 
         graph.addAttribute("ui.stylesheet", "node { text-color: #222; text-size: 20px;}");
-        return graph;
+    }
 
+    public void addEdge(ArrayList<LineRoute> l){
+
+
+        Iterator iter = l.iterator();
+        /*int j = 0;
+        System.out.println("List :: ");
+        while(iter.hasNext()){
+            LineRoute li = (LineRoute) iter.next();
+            System.out.print(j + ". ");
+            for(int i =0; i<3; i++){
+                if(li.getIPByNumber(i) != null){
+                System.out.print(li.getIPByNumber(i).getIP() + "   ");
+                }
+            }
+            System.out.println();
+            j++;
+        }*/
+
+        LineRoute start = new LineRoute();
+        start.setRootLine();
+
+        iter.next();
+
+        if(iter.hasNext()) {
+            LineRoute l1 = (LineRoute) iter.next();
+            createEdge(start, l1);
+
+
+            while (iter.hasNext()) {
+                LineRoute l2 = (LineRoute) iter.next();
+                createEdge(l1, l2);
+                l1 = l2;
+                }
+        }
+    }
+
+
+    public void createEdge(LineRoute l1, LineRoute l2){
+
+        for (int i = 1; i < 4; i++){
+            for(int j = 1; j < 4; j++){
+                if(l1.getIPByNumber(i) != null){
+                    if(l2.getIPByNumber(j) != null){
+                        System.out.println("Edge : " + l1.getIPByNumber(i).getIP() + " -> " + l2.getIPByNumber(j).getIP());
+                        String name = l1.getIPByNumber(i).getIP() + l2.getIPByNumber(j).getIP();
+                        graph.addEdge(name, l1.getIPByNumber(i).getIP(), l2.getIPByNumber(j).getIP());
+                    }
+                }
+            }
+        }
+    }
+
+    public void diplay(){
+        graph.display();
     }
 }

@@ -1,4 +1,5 @@
 package Model;
+import javax.sound.sampled.Line;
 import java.util.regex.*;
 
 /**
@@ -23,6 +24,21 @@ public class LineRoute {
 
     public IPInformation getIP3() {
         return IP3;
+    }
+
+    public IPInformation getIPByNumber(int i){
+        if(i == 1)
+            return IP1;
+        if(i == 2)
+            return IP2;
+        if(i == 3)
+            return IP3;
+        else return null;
+    }
+
+    public void setRootLine() {
+        IP1 = new IPInformation();
+        IP1.setRootIP();
     }
 
     public void parseLine(String line){
@@ -58,12 +74,4 @@ public class LineRoute {
         }
 
     }
-
-    public void printIP1()
-    {
-        System.out.println(IP1.getIP());
-    };
-
-
-
 }

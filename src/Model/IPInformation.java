@@ -8,7 +8,7 @@ public class IPInformation {
     private int t1, t2, t3;
 
     public IPInformation(){
-        IP = new String();
+        IP = null;
         t1 = -1;
         t2 = -1;
         t3 = -1;
@@ -54,6 +54,10 @@ public class IPInformation {
 
     public String getIP() {
         return IP;
+    }
+
+    public void setRootIP(){
+      IP = "root";
     }
 
 
