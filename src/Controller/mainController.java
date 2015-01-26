@@ -1,4 +1,5 @@
 package Controller;
+
 /**
  * Created by Robinson on 12/01/15.
  */
@@ -6,6 +7,8 @@ package Controller;
 
 import Model.Fakeroute;
 import Model.OutputProcessing;
+import Model.LineRoute;
+
 
 
 public class mainController {
@@ -15,8 +18,10 @@ public class mainController {
     Fakeroute fakeroute = new Fakeroute ();
 
         String output  = fakeroute.fakerouteExec();
+        LineRoute lineroute = new LineRoute ();
+        lineroute.parseLine("Green Lights 123.456.7.43 12 ms");
 
-        OutputProcessing outputProcessing = new OutputProcessing(output);
+
     }
 
 }

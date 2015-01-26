@@ -8,7 +8,7 @@ public class IPInformation {
     private int t1, t2, t3;
 
     public IPInformation(){
-        IP = null;
+        IP = new String();
         t1 = 0;
         t2 = 0;
         t3 = 0;
@@ -18,8 +18,21 @@ public class IPInformation {
         this.t1 = t1;
     }
 
+    public void setT1(int t1) {
+        this.t1 = t1;
+    }
+
+    public void setT2(int t2) {
+        this.t2 = t2;
+    }
+
+    public void setT3(int t3) {
+        this.t3 = t3;
+    }
+
     public IPInformation(String IP , int t1, int t2){
         this.IP = IP;
+
         this.t1 = t1;
         this.t2 = t2;
     }
@@ -30,4 +43,15 @@ public class IPInformation {
         this.t2 = t2;
         this.t3 = t3;
     }
+
+    public void setIP(String IP) {
+        this.IP = IP;
+    }
+
+    public String getIP() {
+        return IP;
+    }
+
+
+
 }
