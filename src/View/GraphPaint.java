@@ -4,6 +4,8 @@ import Model.IPInformation;
 import Model.LineRoute;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.swingViewer.Viewer;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -42,11 +44,19 @@ public class GraphPaint {
 
         Node n = graph.addNode("root");
         n.addAttribute("ui.label", "root");
+        n.setAttribute("xyz", 0, 0, 0);
 
         Iterator iter = l.iterator();
 
+        if(iter.hasNext())
+            iter.next();
+
+        //position
+        int x = 0, y = 3;
+
         while (iter.hasNext())
         {
+            x = 0;
             LineRoute lineroute = (LineRoute) iter.next();
 
             if(lineroute.getIP1() != null){
@@ -54,6 +64,8 @@ public class GraphPaint {
                 try {
                     Node n1 = graph.addNode(ipInformation.getIP());
                     n1.addAttribute("ui.label", ipInformation.getIP());
+                    n1.setAttribute("xyz", x, y, 0);
+                    x = x + 20;
                 }catch (org.graphstream.graph.IdAlreadyInUseException e){
                     //e.printStackTrace();
                 }
@@ -64,6 +76,8 @@ public class GraphPaint {
                 try {
                     Node n2 = graph.addNode(ipInformation.getIP());
                     n2.addAttribute("ui.label", ipInformation.getIP());
+                    n2.setAttribute("xyz", x, y, 0);
+                    x = x + 20;
                 }catch (org.graphstream.graph.IdAlreadyInUseException e){
                     //e.printStackTrace();
                 }
@@ -74,10 +88,12 @@ public class GraphPaint {
                 try {
                     Node n3 = graph.addNode(ipInformation.getIP());
                     n3.addAttribute("ui.label", ipInformation.getIP());
+                    n3.setAttribute("xyz", x, y, 0);
                 }catch (org.graphstream.graph.IdAlreadyInUseException e){
                     //e.printStackTrace();
                 }
             }
+            y = y + 3;
         }
 
         graph.addAttribute("ui.stylesheet", "node { text-color: #222; text-size: 20px;}");
@@ -104,6 +120,8 @@ public class GraphPaint {
         LineRoute start = new LineRoute();
         start.setRootLine();
 
+        //use to delete the first element of the list (destincation ip)
+        if(iter.hasNext())
         iter.next();
 
         if(iter.hasNext()) {
@@ -136,6 +154,8 @@ public class GraphPaint {
     }
 
     public void diplay(){
-        graph.display();
+        Viewer viewer = graph.display();
+        viewer.disableAutoLayout();
+
     }
 }
