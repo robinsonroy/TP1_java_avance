@@ -20,26 +20,6 @@ public class GraphPaint {
         graph = new SingleGraph("GraphRoute");
     };
 
-    public void testGraph() {
-        org.graphstream.graph.Graph graph = new SingleGraph("Tutorial 1");
-
-        graph.addNode("A" );
-
-
-
-        Node n = graph.addNode("B");
-        n.addAttribute("ui.label","B");
-        graph.addNode("C" );
-        graph.addEdge("AB", "A", "B");
-        graph.addEdge("BC", "B", "C");
-        graph.addEdge("CA", "C", "A");
-
-
-
-        graph.addAttribute("ui.stylesheet", "node { text-alignment: at-left; text-background-mode: plain; text-background-color: #EB2; text-color: #222; text-size: 20px; padding: 40px;}");
-        graph.display();
-    }
-
     public void readList(ArrayList<LineRoute> l) {
 
         Node n = graph.addNode("root");
@@ -48,6 +28,7 @@ public class GraphPaint {
 
         Iterator iter = l.iterator();
 
+        //use to delete the first element of the list (destincation ip)
         if(iter.hasNext())
             iter.next();
 
@@ -96,26 +77,11 @@ public class GraphPaint {
             y = y + 3;
         }
 
-        graph.addAttribute("ui.stylesheet", "node { text-color: #222; text-size: 20px;}");
     }
 
     public void addEdge(ArrayList<LineRoute> l){
 
-
         Iterator iter = l.iterator();
-        /*int j = 0;
-        System.out.println("List :: ");
-        while(iter.hasNext()){
-            LineRoute li = (LineRoute) iter.next();
-            System.out.print(j + ". ");
-            for(int i =0; i<3; i++){
-                if(li.getIPByNumber(i) != null){
-                System.out.print(li.getIPByNumber(i).getIP() + "   ");
-                }
-            }
-            System.out.println();
-            j++;
-        }*/
 
         LineRoute start = new LineRoute();
         start.setRootLine();
@@ -127,7 +93,6 @@ public class GraphPaint {
         if(iter.hasNext()) {
             LineRoute l1 = (LineRoute) iter.next();
             createEdge(start, l1);
-
 
             while (iter.hasNext()) {
                 LineRoute l2 = (LineRoute) iter.next();
@@ -154,8 +119,9 @@ public class GraphPaint {
     }
 
     public void diplay(){
+
+        graph.addAttribute("ui.stylesheet", "node { text-color: #222; text-size: 20px;}");
         Viewer viewer = graph.display();
         viewer.disableAutoLayout();
-
     }
 }
