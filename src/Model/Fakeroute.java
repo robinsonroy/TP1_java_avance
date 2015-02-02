@@ -1,5 +1,6 @@
 package Model;
 
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -9,12 +10,12 @@ import java.io.InputStream;
 public class Fakeroute {
 
     private char[] buffer = new char[2000];
+    private String destinationIP;
 
 
-
-
-    public Fakeroute()
+    public Fakeroute(String destinationIP)
     {
+        this.destinationIP = destinationIP;
         for (int i=0; i<200; i++)
         {
             buffer[i] =' ';
@@ -23,12 +24,10 @@ public class Fakeroute {
 
     public String fakerouteExec() {
 
-
-
         Runtime r = Runtime.getRuntime();
         Process p = null;
         try {
-            p = r.exec("java -jar fakeroute.jar ece.fr");
+            p = r.exec("java -jar fakeroute.jar " + destinationIP);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +52,5 @@ public class Fakeroute {
 
         return output;
     }
-
-
 
 }

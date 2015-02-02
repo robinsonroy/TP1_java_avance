@@ -67,8 +67,6 @@ public class LineRoute {
                 IP3 = new IPInformation();
                 IP3.setIP(matcher.group());
                 saved[2] = 1;
-
-
             }
         }
 

@@ -5,6 +5,7 @@ import Model.LineRoute;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.swingViewer.Viewer;
+import scala.util.parsing.combinator.testing.Str;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,11 +21,15 @@ public class GraphPaint {
         graph = new SingleGraph("GraphRoute");
     };
 
-    public void readList(ArrayList<LineRoute> l) {
+    public void readList(ArrayList<LineRoute> l, String rootIP, int start) {
 
-        Node n = graph.addNode("root");
-        n.addAttribute("ui.label", "root");
-        n.setAttribute("xyz", 0, 0, 0);
+        try{
+            Node n = graph.addNode(rootIP);
+            n.addAttribute("ui.label", rootIP);
+            n.setAttribute("xyz", 0, 0, 0);
+        }catch (org.graphstream.graph.IdAlreadyInUseException e){
+            //e.printStackTrace();
+        }
 
         Iterator iter = l.iterator();
 
@@ -33,11 +38,13 @@ public class GraphPaint {
             iter.next();
 
         //position
-        int x = 0, y = 3;
+        int x;
+        int y = 3;
 
         while (iter.hasNext())
         {
-            x = 0;
+            x = start;
+
             LineRoute lineroute = (LineRoute) iter.next();
 
             if(lineroute.getIP1() != null){
